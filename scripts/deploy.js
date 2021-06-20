@@ -22,6 +22,33 @@ async function main() {
   await cmoRegistryInstance.deployed();
 
   console.log("CMORegistry deployed to:", cmoRegistryInstance.address);
+
+  await setTokenWithRange({
+    min: 999,
+    max: 2000,
+    tokenPrice: 1000,
+    cmoRegistryInstance,
+  });
+}
+
+async function setTokenWithRange({
+  min,
+  max,
+  tokenPrice,
+  cmoRegistryInstance,
+}) {
+  const createTx = await cmoRegistryInstance.createTokenWithRange(min, max);
+
+  const createTxReceipt = await createTx.wait();
+
+  if (createTxReceipt) {
+    const setTokenPriceTx = await cmoRegistryInstance.setTokenPrice(
+      1,
+      tokenPrice
+    );
+
+    await setTokenPriceTx.wait();
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
