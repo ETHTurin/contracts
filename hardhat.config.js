@@ -22,8 +22,7 @@ module.exports = {
     goerli: {
       url: "https://goerli.infura.io/v3/0b60056fd3f84b6f8830243ac587e717",
       accounts: {
-        mnemonic:
-          "wage dirt stove orange seek whale intact anchor license clean hurry inflict",
+        mnemonic: "",
       },
     },
   },
