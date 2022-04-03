@@ -1,3 +1,5 @@
+require("dotenv").config({});
+
 require("@nomiclabs/hardhat-waffle");
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -20,9 +22,9 @@ module.exports = {
   networks: {
     hardhat: {},
     goerli: {
-      url: "https://goerli.infura.io/v3/0b60056fd3f84b6f8830243ac587e717",
+      url: `https://goerli.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
       accounts: {
-        mnemonic: "",
+        mnemonic: process.env.MNEMONIC,
       },
     },
   },

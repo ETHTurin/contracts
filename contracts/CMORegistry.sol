@@ -25,6 +25,7 @@ contract CMORegistry is TipJar {
 
   event RightRegistered(string _cid, address payable[] _owners, uint8[] _shares);
 
+
   constructor(string memory _tokenUri) TipJar(_tokenUri) {}
 
   /** @dev            Submits the IPFS content hash of something that has to be registered on chain
@@ -65,6 +66,18 @@ contract CMORegistry is TipJar {
     return rightsToOwners[_cid];
   }
 
+  /** @dev          Returns all cids
+   *  @return cids  Array of cids
+   */
+  function getRightsCids() public view returns (string[] memory cids) {
+    string[] memory _cids = new string[](numOfCids);
+
+    for(uint i = 0; i < numOfCids; i++) {
+      _cids[i] = rightsCids[i];
+    }
+
+    return _cids;
+  }
 
   /** @dev            Pays the necessary share in order to access some rights and mints an NFT that certify the ownership
    *  @param _cids    Array of IPFS content hashes of the rights to be used
